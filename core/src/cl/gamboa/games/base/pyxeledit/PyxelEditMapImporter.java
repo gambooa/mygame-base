@@ -1,4 +1,4 @@
-package cl.gamboa.games.base.pyxelmap;
+package cl.gamboa.games.base.pyxeledit;
 
 import cl.gamboa.games.base.layer.TiledLayer;
 import cl.gamboa.games.base.manager.TextureManager;
@@ -12,10 +12,10 @@ import java.util.HashMap;
 /**
  * @author Gamboa
  */
-public class PyxelMapImporter {
+public class PyxelEditMapImporter {
     private final HashMap<String, TiledLayer> layers;
     
-    public PyxelMapImporter(String tileName){
+    public PyxelEditMapImporter(String tileName){
         layers = new HashMap<String, TiledLayer>();
         
         Texture texture = TextureManager.getInstance().getTexture(tileName);

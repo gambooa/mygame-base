@@ -1,4 +1,4 @@
-package cl.gamboa.games.base.pyxelmap;
+package cl.gamboa.games.base.pyxeledit;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

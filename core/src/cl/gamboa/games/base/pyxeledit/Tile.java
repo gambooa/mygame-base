@@ -1,4 +1,4 @@
-package cl.gamboa.games.base.pyxelmap;
+package cl.gamboa.games.base.pyxeledit;
 
 /**
  * @author Gamboa
