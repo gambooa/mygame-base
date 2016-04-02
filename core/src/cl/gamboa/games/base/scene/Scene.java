@@ -18,6 +18,10 @@ public abstract class Scene {
         layers = new Array<Layer>();
     }
     
+    public OrthographicCamera getCamera(){
+        return camera;
+    }
+    
     public void update(float deltaTime) {
         for(Layer layer : layers){
             layer.update(deltaTime);
