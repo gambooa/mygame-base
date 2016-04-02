@@ -1,5 +1,6 @@
 package cl.gamboa.games.base.layer;
 
+import cl.gamboa.games.base.pyxelmap.TileMap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**

@@ -1,12 +1,8 @@
-package cl.gamboa.games.base.layer;
+package cl.gamboa.games.base.pyxelmap;
 
-import cl.gamboa.games.base.entity.Entity;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.JsonReader;
-import com.badlogic.gdx.utils.JsonValue;
 
 /**
  * @author Gamboa
@@ -22,28 +18,14 @@ public class TileMap {
     private final Array<Tile> tiles;
     private final Texture texture;
     
-    public TileMap(String jsonFile, Texture texture){
-        
-        this.texture = texture;
-        
-        JsonValue json = new JsonReader().parse(Gdx.files.internal(jsonFile));
-        this.tileswide = json.getInt("tileswide");
-        this.tileshigh = json.getInt("tileshigh");
-        this.tileheight = json.getInt("tileheight");
-        this.tilewidth = json.getInt("tilewidth");
-        this.tilesonx = texture.getWidth()/tilewidth;
-        
-        tiles = new Array<Tile>();
-        
-        JsonValue jsonTiles = json.get("layers").get(0).get("tiles"); // The first layer of the tiledmap
-        for (JsonValue jsonTile : jsonTiles.iterator()) {
-            tiles.add(new Tile( jsonTile.getBoolean("flipX"), 
-                                jsonTile.getInt("y"), 
-                                jsonTile.getInt("rot"),
-                                jsonTile.getInt("tile"),
-                                jsonTile.getInt("index"),
-                                jsonTile.getInt("x")));
-        }
+    public TileMap(int tileswide, int tileshigh, int tileheight, int tilewidth, int tilesonx, Array<Tile> tiles, Texture texture){
+        this.texture     = texture;
+        this.tileswide   = tileswide;
+        this.tileshigh   = tileshigh;
+        this.tileheight  = tileheight;
+        this.tilewidth   = tilewidth;
+        this.tilesonx    = tilesonx;
+        this.tiles       = tiles;
     }
     
     public void render(SpriteBatch spriteBatch) {

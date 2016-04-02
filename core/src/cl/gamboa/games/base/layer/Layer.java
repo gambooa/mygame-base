@@ -1,7 +1,6 @@
 package cl.gamboa.games.base.layer;
 
 import cl.gamboa.games.base.entity.Entity;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
