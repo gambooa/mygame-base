@@ -10,16 +10,9 @@ import com.badlogic.gdx.utils.Array;
  * @author gamboa
  */
 public abstract class Layer {
-    protected Texture texture;
     protected Array<Entity> entities;
-    
-    public Layer(Texture texture) {
-        this.texture = texture;
-        entities = new Array<Entity>();
-    }
-    
+
     public Layer() {
-        this.texture = null;
         entities = new Array<Entity>();
     }
     
@@ -28,8 +21,6 @@ public abstract class Layer {
     }
     
     public void render(SpriteBatch spriteBatch) {
-        if(texture != null)
-            spriteBatch.draw(texture, 0, 0);
         for(Entity entity : entities){
             entity.render(spriteBatch);
         }

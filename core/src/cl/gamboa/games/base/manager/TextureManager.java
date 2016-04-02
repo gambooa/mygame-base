@@ -20,6 +20,7 @@ public class TextureManager {
     
     private void loadTextures(){
         textures.put("abuelo", new Texture(Gdx.files.internal("img/abuelo.png")));
+        textures.put("prueba-uno", new Texture(Gdx.files.internal("tilemaps/prueba-uno.png")));
     }
     
     public Texture getTexture(String key){
