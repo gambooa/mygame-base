@@ -1,6 +1,7 @@
 package cl.gamboa.games.base;
 
 import cl.gamboa.games.base.manager.SceneManager;
+import cl.gamboa.games.base.manager.TextureManager;
 import cl.gamboa.games.base.scene.MenuScene;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -28,4 +29,10 @@ public class MyGame extends ApplicationAdapter {
         SceneManager.getInstance().getCurrentScene().update(Gdx.graphics.getDeltaTime());
         SceneManager.getInstance().getCurrentScene().render(spriteBatch);
     }
+    
+    @Override
+    public void dispose () {
+        TextureManager.getInstance().dispose();
+        spriteBatch.dispose();
+    }    
 }
