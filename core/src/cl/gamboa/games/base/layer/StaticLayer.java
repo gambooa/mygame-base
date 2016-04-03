@@ -1,6 +1,6 @@
 package cl.gamboa.games.base.layer;
 
-import com.badlogic.gdx.graphics.Texture;
+import cl.gamboa.games.base.MyCamera;
 
 /**
  *
@@ -8,10 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class StaticLayer extends Layer {
 
-    public StaticLayer(Texture texture) {
-        super(texture);
-    }
-    public StaticLayer() {
-        super();
+    public StaticLayer(MyCamera camera, MyCamera hudCamera) {
+        super(camera, hudCamera);
     }
 }

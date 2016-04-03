@@ -3,6 +3,7 @@ package cl.gamboa.games.base.manager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  *
@@ -19,7 +20,12 @@ public class TextureManager {
     }
     
     private void loadTextures(){
-        textures.put("abuelo", new Texture(Gdx.files.internal("img/abuelo.png")));
+        Texture text  = new Texture(Gdx.files.internal("img/abuelo.png"));
+        text.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
+        textures.put("abuelo", text);
+        text  = new Texture(Gdx.files.internal("tilemaps/prueba-uno.png"));
+        text.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
+        textures.put("prueba-uno", text);
     }
     
     public Texture getTexture(String key){
@@ -28,5 +34,15 @@ public class TextureManager {
     
     public static TextureManager getInstance(){
         return INSTANCE;
+    }
+    
+    public void dispose(){
+        Iterator it = textures.entrySet().iterator();
+        while (it.hasNext()) {
+            HashMap.Entry entry = (HashMap.Entry)it.next();
+            Texture text = (Texture) entry.getValue();
+            text.dispose();
+            it.remove();
+        }
     }
 }

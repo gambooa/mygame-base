@@ -1,7 +1,7 @@
 package cl.gamboa.games.base.layer;
 
+import cl.gamboa.games.base.MyCamera;
 import cl.gamboa.games.base.entity.Entity;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
@@ -10,17 +10,26 @@ import com.badlogic.gdx.utils.Array;
  * @author gamboa
  */
 public abstract class Layer {
-    protected Texture texture;
+    
     protected Array<Entity> entities;
     
-    public Layer(Texture texture) {
-        this.texture = texture;
-        entities = new Array<Entity>();
+    protected MyCamera camera;
+    protected MyCamera hudCamera;
+    
+    protected boolean isHud;
+        
+    public Layer(MyCamera camera, MyCamera hudCamera) {
+        entities        = new Array<Entity>();
+        this.camera     = camera;
+        this.hudCamera  = hudCamera;
+        this.isHud      = false;
     }
     
-    public Layer() {
-        this.texture = null;
-        entities = new Array<Entity>();
+    public Layer(MyCamera camera, MyCamera hudCamera, boolean isHud) {
+        entities        = new Array<Entity>();
+        this.camera     = camera;
+        this.hudCamera  = hudCamera;
+        this.isHud      = isHud;
     }
     
     public void addEntity(Entity entity){
@@ -28,10 +37,18 @@ public abstract class Layer {
     }
     
     public void render(SpriteBatch spriteBatch) {
-        if(texture != null)
-            spriteBatch.draw(texture, 0, 0);
-        for(Entity entity : entities){
-            entity.render(spriteBatch);
+        if (!isHud) {
+            for(Entity entity : entities){
+                entity.render(spriteBatch);
+            }
+        }
+    }
+    
+    public void renderHud(SpriteBatch spriteBatch) {
+        if (isHud) {
+            for(Entity entity : entities){
+                entity.render(spriteBatch);
+            }
         }
     }
     
