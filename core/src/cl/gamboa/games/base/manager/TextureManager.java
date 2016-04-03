@@ -3,6 +3,7 @@ package cl.gamboa.games.base.manager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Iterator;
 
 /**
@@ -39,7 +40,7 @@ public class TextureManager {
     public void dispose(){
         Iterator it = textures.entrySet().iterator();
         while (it.hasNext()) {
-            HashMap.SimpleEntry entry = (HashMap.SimpleEntry)it.next();
+            Map.Entry<String, Texture> entry = (Map.Entry<String, Texture>)it.next();
             Texture text = (Texture) entry.getValue();
             text.dispose();
             it.remove();
