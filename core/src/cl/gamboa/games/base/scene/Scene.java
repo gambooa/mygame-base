@@ -1,5 +1,7 @@
 package cl.gamboa.games.base.scene;
 
+import cl.gamboa.games.base.MyCamera;
+import cl.gamboa.games.base.MyGame;
 import cl.gamboa.games.base.layer.Layer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -10,19 +12,24 @@ import com.badlogic.gdx.utils.Array;
  * @author gamboa
  */
 public abstract class Scene {
-    protected OrthographicCamera camera;
+    protected MyCamera camera;
     protected Array<Layer> layers;
     
     protected Scene(){
-        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        camera = new MyCamera();
         layers = new Array<Layer>();
     }
     
-    public OrthographicCamera getCamera(){
+    public MyCamera getCamera(){
         return camera;
     }
     
+    public void resize(int width, int height) {
+        camera.resize(width, height);
+    }    
+    
     public void update(float deltaTime) {
+        camera.update();
         for(Layer layer : layers){
             layer.update(deltaTime);
         }

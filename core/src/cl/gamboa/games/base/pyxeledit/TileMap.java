@@ -1,5 +1,6 @@
 package cl.gamboa.games.base.pyxeledit;
 
+import cl.gamboa.games.base.MyGame;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
@@ -18,6 +19,9 @@ public class TileMap {
     private final Array<Tile> tiles;
     private final Texture texture;
     
+    private final int yOffset;
+    private final int xOffset;
+    
     public TileMap(int tileswide, int tileshigh, int tileheight, int tilewidth, int tilesonx, Array<Tile> tiles, Texture texture){
         this.texture     = texture;
         this.tileswide   = tileswide;
@@ -26,13 +30,16 @@ public class TileMap {
         this.tilewidth   = tilewidth;
         this.tilesonx    = tilesonx;
         this.tiles       = tiles;
+        
+        yOffset = (tileshigh-1)*tileheight;
+        xOffset = 0;
     }
     
     public void render(SpriteBatch spriteBatch) {
         for(Tile tile : tiles){
             spriteBatch.draw(texture, 
-                            tile.getX()*tilewidth, // x pos 
-                            -tile.getY()*tileheight, // y pos
+                            xOffset + tile.getX()*tilewidth, // x pos 
+                            yOffset - tile.getY()*tileheight, // y pos
                             tilewidth,  // width
                             tileheight, // height
                             (tile.getTile() - tilesonx*((int)(tile.getTile()/tilesonx)))*tilewidth, // source x
