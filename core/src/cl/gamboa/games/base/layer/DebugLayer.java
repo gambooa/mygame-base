@@ -1,7 +1,6 @@
 package cl.gamboa.games.base.layer;
 
 import cl.gamboa.games.base.MyCamera;
-import cl.gamboa.games.base.manager.SceneManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
@@ -18,7 +17,8 @@ public class DebugLayer extends Layer {
     private final BitmapFont font; 
     private final Vector2 hudPosition;
     private final Vector2 mousePosition;
-    private float lineHeight;
+    private final float lineHeight;
+    private final float padding;
     private float fps;
 
     
@@ -29,6 +29,7 @@ public class DebugLayer extends Layer {
         hudPosition     = new Vector2();
         mousePosition   = new Vector2();
         lineHeight      = 18f;
+        padding         = 10f;
     }    
     
     @Override
@@ -42,17 +43,20 @@ public class DebugLayer extends Layer {
             camera.zoom -= 0.01f;
         }
         
-        hudPosition.x = 0;
-        hudPosition.y = 0;
+        hudPosition.x = hudCamera.getBounds().x + padding;
+        hudPosition.y = hudCamera.getBounds().height - padding;
 
         timePassed     += deltaTime;
         mousePosition.x = Gdx.input.getX();
         mousePosition.y = Gdx.input.getY();
         fps             = Gdx.graphics.getFramesPerSecond();
+        
+        camera.update();
+        hudCamera.update();
     }    
     
     @Override
-    public void render(SpriteBatch spriteBatch){
+    public void renderHud(SpriteBatch spriteBatch){
         super.render(spriteBatch);
         font.draw(spriteBatch, "STim: " + timePassed, hudPosition.x, hudPosition.y);
         font.draw(spriteBatch, "CPos X=" + camera.position.x + " Y=" + camera.position.y, hudPosition.x, hudPosition.y - lineHeight);

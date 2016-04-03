@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MyGame extends ApplicationAdapter {
     
-    public static final float ZOOM_FACTOR  = 0.8f;
+    public static final float ZOOM_FACTOR  = 1;
     public static final int WIDTH  = 32*16;
     public static final int HEIGHT = 18*16;
     public static final float ASPECT_RATIO = (float)WIDTH/(float)HEIGHT;

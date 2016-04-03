@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Array;
  * @author gamboa
  */
 public abstract class Scene {
+    
     protected MyCamera camera;
     protected MyCamera hudCamera;
     protected Array<Layer> layers;
@@ -18,9 +19,11 @@ public abstract class Scene {
         hudCamera = new MyCamera();
         layers = new Array<Layer>();
     }
+    
     public MyCamera getHudCamera(){
         return hudCamera;
     }
+    
     public MyCamera getCamera(){
         return camera;
     }
@@ -31,12 +34,13 @@ public abstract class Scene {
     }    
     
     public void update(float deltaTime) {
-        hudCamera.update();
-        camera.update();
         for(Layer layer : layers){
             layer.update(deltaTime);
         }
+        camera.update();
+        hudCamera.update();
     }
+    
     public void render(SpriteBatch spriteBatch){
         spriteBatch.begin();
         spriteBatch.setProjectionMatrix(camera.combined);
