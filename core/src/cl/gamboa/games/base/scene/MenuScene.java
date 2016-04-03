@@ -17,9 +17,9 @@ public class MenuScene extends Scene{
         PyxelEditMapImporter pmi = new PyxelEditMapImporter("prueba-uno");
         
         StaticLayer mainLayer = new StaticLayer();
-        mainLayer.addEntity(new Player(new Vector2(0, 0), new Vector2(0, 0)));
+        mainLayer.addEntity(new Player(new Vector2(camera.position.x, camera.position.y), new Vector2(0, 0)));
         
-        layers.add(pmi.getLayer("Layer 0")); // pmi returns a TiledLayer
+        layers.add(pmi.getLayer("bg")); // pmi returns a TiledLayer
         layers.add(mainLayer);
         layers.add(new DebugLayer());
     }

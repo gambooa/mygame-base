@@ -11,37 +11,42 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class MyCamera extends OrthographicCamera {
     
-    private Rectangle viewport;
+    private final Rectangle viewport;
     
     public MyCamera(){
         super(MyGame.WIDTH, MyGame.HEIGHT);
-        position.x = 0 + viewportWidth/2;
-        position.y = 0 + viewportHeight/2;
+        zoom = MyGame.ZOOM_FACTOR;
+        position.x = MyGame.WIDTH/2;
+        position.y = MyGame.HEIGHT/2;
         viewport = new Rectangle(0, 0, MyGame.WIDTH, MyGame.HEIGHT);
     }
     
+    public Rectangle getBounds(){
+        return new Rectangle(position.x - zoom*viewportWidth/2, position.y - zoom*viewportHeight/2, position.x + zoom*viewportWidth/2, position.y + zoom*viewportHeight/2);
+    }
+    
+    public Rectangle getViewPort(){
+        return viewport;
+    }
+    
     public void resize(int width, int height){
-        // calculate new viewport
         float aspectRatio = (float)width/(float)height;
         float scale = 1f;
         Vector2 crop = new Vector2(0f, 0f);
         if(aspectRatio > ASPECT_RATIO) {
             scale = (float)height/(float)MyGame.HEIGHT;
             crop.x = (width - MyGame.WIDTH*scale)/2f;
-        }
-        else if(aspectRatio < ASPECT_RATIO) {
+        }else if(aspectRatio < ASPECT_RATIO) {
             scale = (float)width/(float)MyGame.WIDTH;
             crop.y = (height - MyGame.HEIGHT*scale)/2f;
         } else {
             scale = (float)width/(float)MyGame.WIDTH;
         }
 
-        float w = (float)MyGame.WIDTH*scale;
-        float h = (float)MyGame.HEIGHT*scale;
         viewport.x = crop.x;
         viewport.y = crop.y;
-        viewport.width = w;
-        viewport.height = h;
+        viewport.width = (float)MyGame.WIDTH*scale;
+        viewport.height = (float)MyGame.HEIGHT*scale;
     }
     
     @Override
