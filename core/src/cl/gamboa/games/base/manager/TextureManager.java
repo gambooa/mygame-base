@@ -39,7 +39,7 @@ public class TextureManager {
     public void dispose(){
         Iterator it = textures.entrySet().iterator();
         while (it.hasNext()) {
-            HashMap.Entry entry = (HashMap.Entry)it.next();
+            HashMap.SimpleEntry entry = (HashMap.SimpleEntry)it.next();
             Texture text = (Texture) entry.getValue();
             text.dispose();
             it.remove();
