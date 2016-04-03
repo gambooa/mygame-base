@@ -14,13 +14,13 @@ public class MenuScene extends Scene{
     
     public MenuScene() {
         super();
-        PyxelEditMapImporter pmi = new PyxelEditMapImporter("prueba-uno");
+        PyxelEditMapImporter pmi = new PyxelEditMapImporter("prueba-uno", camera, hudCamera);
         
-        StaticLayer mainLayer = new StaticLayer();
+        StaticLayer mainLayer = new StaticLayer(camera, hudCamera);
         mainLayer.addEntity(new Player(new Vector2(camera.position.x, camera.position.y), new Vector2(0, 0)));
         
         layers.add(pmi.getLayer("bg")); // pmi returns a TiledLayer
         layers.add(mainLayer);
-        layers.add(new DebugLayer());
+        layers.add(new DebugLayer(camera, hudCamera));
     }
 }

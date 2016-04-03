@@ -20,8 +20,12 @@ public class TextureManager {
     }
     
     private void loadTextures(){
-        textures.put("abuelo", new Texture(Gdx.files.internal("img/abuelo.png")));
-        textures.put("prueba-uno", new Texture(Gdx.files.internal("tilemaps/prueba-uno.png")));
+        Texture text  = new Texture(Gdx.files.internal("img/abuelo.png"));
+        text.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
+        textures.put("abuelo", text);
+        text  = new Texture(Gdx.files.internal("tilemaps/prueba-uno.png"));
+        text.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
+        textures.put("prueba-uno", text);
     }
     
     public Texture getTexture(String key){

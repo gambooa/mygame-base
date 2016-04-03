@@ -41,7 +41,7 @@ public class SceneManager {
         scenes.peek().update(deltaTime);
     }
     
-    public void render(SpriteBatch spriteBatch){
+    public void render(SpriteBatch spriteBatch, SpriteBatch hudBatch){
         scenes.peek().render(spriteBatch);
     }
 }

@@ -1,5 +1,6 @@
 package cl.gamboa.games.base.pyxeledit;
 
+import cl.gamboa.games.base.MyCamera;
 import cl.gamboa.games.base.layer.TiledLayer;
 import cl.gamboa.games.base.manager.TextureManager;
 import com.badlogic.gdx.Gdx;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 public class PyxelEditMapImporter {
     private final HashMap<String, TiledLayer> layers;
     
-    public PyxelEditMapImporter(String tileName){
+    public PyxelEditMapImporter(String tileName, MyCamera camera, MyCamera hudCamera){
         layers = new HashMap<String, TiledLayer>();
         
         Texture texture = TextureManager.getInstance().getTexture(tileName);
@@ -44,7 +45,7 @@ public class PyxelEditMapImporter {
                                     jsonTile.getInt("x")));
             }
             TileMap tileMap = new TileMap(tileswide, tileshigh, tileheight, tilewidth, tilesonx, tiles, texture);
-            TiledLayer tiledLayer = new TiledLayer(tileMap);
+            TiledLayer tiledLayer = new TiledLayer(tileMap, camera, hudCamera);
             // add the layer to the hashmap
             layers.put(layerName, tiledLayer);
         }
